@@ -21,3 +21,7 @@ def get_spectrum_from_path(path,db=True, n_fft=2048, hop_length=512):
         spectrogram = librosa.amplitude_to_db(spectrogram)
     return spectrogram
     
+    
+def load_data(path_to_csv):
+    pass
+    # return inputs,targets
