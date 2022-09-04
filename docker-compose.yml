@@ -12,3 +12,5 @@ services:
       - .:/src
     ports:
       - 8888:8888
+    working_dir: /src/model_processing
+    runtime: nvidia
