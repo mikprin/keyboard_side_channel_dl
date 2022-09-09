@@ -50,6 +50,8 @@ RUN python3 -m pip --no-cache-dir install \
     pandas \
     jupyter
 
+RUN pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
+
 RUN mkdir  -p /python_requirements
 # Copy req.
 COPY model_processing/requirements.txt  /python_requirements/requirements.txt
