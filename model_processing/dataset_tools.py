@@ -15,6 +15,7 @@ import torch
 import torchaudio
 from torchaudio import transforms
 from IPython.display import Audio
+from sklearn import preprocessing
 
 class AudioUtil():
     # ----------------------------
@@ -43,7 +44,7 @@ class AudioUtil():
 class SoundDS(torch.utils.data.Dataset):
     def __init__(self, df, data_path):
         self.df = df
-        self.test_keys = get_unique_keys(df)
+        self.test_keys = self.get_unique_keys(df)
         self.data_mapper = preprocessing.LabelEncoder()
         targets = self.data_mapper.fit_transform(self.test_keys)
         # targets: array([0, 1, 2, 3])
@@ -87,9 +88,9 @@ class SoundDS(torch.utils.data.Dataset):
 
         return sgram, class_id
   
-def get_unique_keys(df):
-    keys = []
-    for key in df['key_pressed']:
-        if key not in keys:
-            keys.append(key)
-    return keys  
+    def get_unique_keys(self,df):
+        keys = []
+        for key in df['key_pressed']:
+            if key not in keys:
+                keys.append(key)
+        return keys  
