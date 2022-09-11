@@ -1,3 +1,6 @@
 **/*.wav
 **/*.egg-info
 **/__pycache__
+**/logs
+model_processing/charts
+**/.ipynb_checkpoints
