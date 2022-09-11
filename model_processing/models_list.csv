@@ -1,0 +1,2 @@
+model_name,filename,accuracy,loss,num_samples,num_epochs,date,comment
+first_model_30_epochs,models/20220911-140844.pt,0.9634615384615385,0.3923303900342999,650,30,20220911-140844,first model
