@@ -61,14 +61,14 @@ def save_model(model, dataset = None , name = None , comment = "", models_folder
     if not os.path.exists(models_folder):
         os.mkdir(models_folder)
     if not  os.path.exists("models_list.csv"):
-        pd.DataFrame(columns=["model_name", "filename", "accuracy", "loss", "num_samples", "num_epochs", "date" , "comment"]).to_csv("models_list.csv", index=False)
+       pd.DataFrame(columns=["model_name", "filename", "accuracy", "loss", "num_samples", "num_epochs", "date" , "comment"]).to_csv("models_list.csv", index=False)
     models_dataframe = pd.read_csv("models_list.csv")
 
     if dataset is not None:
-        num_samples = len(dataset)
+       num_samples = len(dataset)
         
     else:
-        num_samples = None
+       num_samples = None
     filename = os.path.join(models_folder,f"{model.date}.pt")
     torch.save(model, filename)
     model_row = { "model_name": name, "filename": filename, "accuracy": model.acc, "loss": model.loss, "num_samples": num_samples, "num_epochs": num_epochs , "date": model.date, "comment": comment}
