@@ -36,9 +36,11 @@ def plot_fft_data(freq,data,left_part=True,xlog=True,ylog=False,figsize=(7, 5)):
        plt.show()
 
 
-def plot_spectrum(spectrum,sample_name="",figsize=(5,5),origin='lower'):
+def plot_spectrum(spectrum,sample_name="",figsize=(5,5),origin='lower', title = None, save_figure_path=None):
     fig = plt.figure(figsize=figsize, dpi= 100, facecolor='w', edgecolor='k')
     ax = plt.axes()
+    if title is None:
+           ax.set_title(f"Spectrum of {title}")
     ax.set(xlabel='time', ylabel='Magnitude',
               title=f'Spectrum of a sample {sample_name}')
     ax.imshow(spectrum, interpolation='nearest', aspect='auto' , cmap='viridis',origin=origin)
