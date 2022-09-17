@@ -152,7 +152,7 @@ if __name__ == '__main__':
     parser.add_argument('-d','--csv', type=str , help="Path for database")
     parser.add_argument('--datasetpath', type=str , help="Path for dataset")
     parser.add_argument('--nodatabase', type=str , help="Use to not create database files")
-    parser.add_argument('-i','--index', type=int , help="Index for the first sample")'
+    parser.add_argument('-i','--index', type=int , help="Index for the first sample")
     args = parser.parse_args()
     
     if args.datasetpath:
@@ -192,7 +192,8 @@ if __name__ == '__main__':
             # index += 1 # Iterate index since index = last index used
             button_press = Button_Sample(index,sample,key_pressed,dataset_folder=dataset_folder)
             new_database_entery = {
-                "id":index,"path":button_press.path,
+                "id":index,
+                "path":button_press.path,
                 "key_pressed":button_press.button_key,
                 "num_of_samples":button_press.num_samples,
                 "time_created":button_press.time_created,
@@ -203,7 +204,7 @@ if __name__ == '__main__':
             if not args.nodatabase:
                 database.dataframe = pd.concat([database.dataframe,temp_df])
                 database.update_on_disk()
-                
+            logging.info(f"Saved as entery: {index}. Filename: {button_press.path}")
         index += 1
         time.sleep(0.1) # Small delay here to avoid double taps
         
