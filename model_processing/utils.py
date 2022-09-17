@@ -36,9 +36,11 @@ def plot_fft_data(freq,data,left_part=True,xlog=True,ylog=False,figsize=(7, 5)):
        plt.show()
 
 
-def plot_spectrum(spectrum,sample_name="",figsize=(5,5),origin='lower'):
+def plot_spectrum(spectrum,sample_name="",figsize=(5,5),origin='lower', title = None, save_figure_path=None):
     fig = plt.figure(figsize=figsize, dpi= 100, facecolor='w', edgecolor='k')
     ax = plt.axes()
+    if title is None:
+           ax.set_title(f"Spectrum of {title}")
     ax.set(xlabel='time', ylabel='Magnitude',
               title=f'Spectrum of a sample {sample_name}')
     ax.imshow(spectrum, interpolation='nearest', aspect='auto' , cmap='viridis',origin=origin)
@@ -61,14 +63,14 @@ def save_model(model, dataset = None , name = None , comment = "", models_folder
     if not os.path.exists(models_folder):
         os.mkdir(models_folder)
     if not  os.path.exists("models_list.csv"):
-        pd.DataFrame(columns=["model_name", "filename", "accuracy", "loss", "num_samples", "num_epochs", "date" , "comment"]).to_csv("models_list.csv", index=False)
+       pd.DataFrame(columns=["model_name", "filename", "accuracy", "loss", "num_samples", "num_epochs", "date" , "comment"]).to_csv("models_list.csv", index=False)
     models_dataframe = pd.read_csv("models_list.csv")
 
     if dataset is not None:
-        num_samples = len(dataset)
+       num_samples = len(dataset)
         
     else:
-        num_samples = None
+       num_samples = None
     filename = os.path.join(models_folder,f"{model.date}.pt")
     torch.save(model, filename)
     model_row = { "model_name": name, "filename": filename, "accuracy": model.acc, "loss": model.loss, "num_samples": num_samples, "num_epochs": num_epochs , "date": model.date, "comment": comment}

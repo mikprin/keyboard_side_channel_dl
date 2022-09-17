@@ -152,6 +152,7 @@ if __name__ == '__main__':
     parser.add_argument('-d','--csv', type=str , help="Path for database")
     parser.add_argument('--datasetpath', type=str , help="Path for dataset")
     parser.add_argument('--nodatabase', type=str , help="Use to not create database files")
+    parser.add_argument('-i','--index', type=int , help="Index for the first sample")'
     args = parser.parse_args()
     
     if args.datasetpath:
@@ -170,6 +171,9 @@ if __name__ == '__main__':
         index = 0
     else:
         index = int(database.dataframe.iloc[-1:]["id"]) + 1
+    
+    if args.index:
+        index = args.index
     
     time.sleep(0.2) # Delay to avoid starting to early
     exit_command = False

@@ -42,8 +42,10 @@ class AudioUtil():
     
     
 class SoundDS(torch.utils.data.Dataset):
-    def __init__(self, df, data_path):
+    def __init__(self, df, data_path , n_mels=64, n_fft=1024, hop_len=None):
         self.df = df
+        self.n_mels = n_mels
+        self.n_fft = n_fft
         self.test_keys = self.get_unique_keys(df)
         self.data_mapper = preprocessing.LabelEncoder()
         targets = self.data_mapper.fit_transform(self.test_keys)
@@ -83,7 +85,7 @@ class SoundDS(torch.utils.data.Dataset):
 
         # dur_aud = AudioUtil.pad_trunc(rechan, self.duration)
         # shift_aud = AudioUtil.time_shift(dur_aud, self.shift_pct)
-        sgram = AudioUtil.spectro_gram(aud, n_mels=64, n_fft=1024, hop_len=None)
+        sgram = AudioUtil.spectro_gram(aud, n_mels=self.n_mels, n_fft=self.n_fft, hop_len=None)
         # aug_sgram = AudioUtil.spectro_augment(sgram, max_mask_pct=0.1, n_freq_masks=2, n_time_masks=2)
 
         return sgram, class_id
