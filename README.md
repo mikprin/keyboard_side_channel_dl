@@ -47,13 +47,24 @@ After installation you can use `model_processing/audio_process_notebook.ipynb` n
 `utils.py` and `dataset_tools.py` are used in the notebook as imported class and function. If you interested in them you can also check them out.
 
 
+#### Static visuals of the sample 
 Section "Static visuals of the sample" is used to visualize the dataset. It is not necessary for training and evaluation of the model.
 
-Section "Dataset loading" is used to load the dataset and split it into train and test sets using `dataset_tools.py` file.
+In this section I show how data is processed and how it is used to train the model. You can understand how to get data like this from the key press:
+
+![key press](doc/img/mel_example.png)
+
+#### Dataset preparation
+
+Section "Dataset preparation" is used to load the dataset and split it into train and test sets using `dataset_tools.py` file.
+
+#### Model training
 
 Section "Model training" is used to train the model. It is not necessary for evaluation of the model.
 
-Section "Model evaluation" is used to evaluate the model. It is not necessary for training of the model.
+#### Inference of the model
+
+Section "Inference of the model" is used to evaluate the model. It is not necessary for training of the model.
 
 ## Requirements for model processing
 
