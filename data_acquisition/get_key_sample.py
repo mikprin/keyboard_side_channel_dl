@@ -149,10 +149,11 @@ class Sounds_Database():
 if __name__ == '__main__':
     
     parser = argparse.ArgumentParser(description='Data Acquisition system to record dataset of keyboard sounds')
-    parser.add_argument('-d','--csv', type=str , help="Path for database")
-    parser.add_argument('--datasetpath', type=str , help="Path for dataset")
+    parser.add_argument('-d','--csv', type=str , help="Path for database (default: dataset.csv)")
+    parser.add_argument('--datasetpath', type=str , help="Path for dataset (default: samples_dataset)")
     parser.add_argument('--nodatabase', type=str , help="Use to not create database files")
     parser.add_argument('-i','--index', type=int , help="Index for the first sample")
+    parser.add_argument('--comment', type=str , help="Comment for the samples")
     args = parser.parse_args()
     
     if args.datasetpath:
@@ -172,8 +173,15 @@ if __name__ == '__main__':
     else:
         index = int(database.dataframe.iloc[-1:]["id"]) + 1
     
+    # Parse index
     if args.index:
         index = args.index
+    
+    # Comment for the samples
+    if args.comment:
+        comment = args.comment
+    else:
+        comment = ""
     
     time.sleep(0.2) # Delay to avoid starting to early
     exit_command = False
@@ -190,7 +198,7 @@ if __name__ == '__main__':
         sample = record_next_press()
         if not exit_command:
             # index += 1 # Iterate index since index = last index used
-            button_press = Button_Sample(index,sample,key_pressed,dataset_folder=dataset_folder)
+            button_press = Button_Sample(index,sample,key_pressed,dataset_folder=dataset_folder , comment=comment)
             new_database_entery = {
                 "id":index,
                 "path":button_press.path,
