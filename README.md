@@ -31,7 +31,7 @@ options:
                         Index for the first sample
 ```
 
-2. You can add comments to the dataset using `--comment` flag. For example `python3 data_acquisition/get_key_sample.py --comment "I am recording my keyboard"` will add a comment to the dataset.
+2. You can add comments to the dataset using `--comment` flag. For example `python3 data_acquisition/get_key_sample.py --comment "I am recording my keyboard"` will add a comment to each sample in the dataset when it will be recorded.
 
 3. After recording is done you will have a `dataset.csv` file with the following structure:
 
@@ -45,6 +45,15 @@ After data is collected you can use it to train your model.
 
 After installation you can use `model_processing/audio_process_notebook.ipynb` notebook to train and evaluate your model. It has it's own comments. Also 
 `utils.py` and `dataset_tools.py` are used in the notebook as imported class and function. If you interested in them you can also check them out.
+
+
+Section "Static visuals of the sample" is used to visualize the dataset. It is not necessary for training and evaluation of the model.
+
+Section "Dataset loading" is used to load the dataset and split it into train and test sets using `dataset_tools.py` file.
+
+Section "Model training" is used to train the model. It is not necessary for evaluation of the model.
+
+Section "Model evaluation" is used to evaluate the model. It is not necessary for training of the model.
 
 ## Requirements for model processing
 
@@ -66,3 +75,4 @@ If you want to install the environment locally, you will need to install:
 - PyTorch and pytorch-audio
 - CUDA 11.6 (or compatible with your pytorch version)
 - Packages from `model_processing/requirements.txt` file
+
