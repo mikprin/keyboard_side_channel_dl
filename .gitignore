@@ -4,3 +4,5 @@
 **/logs
 model_processing/charts
 **/.ipynb_checkpoints
+README.pdf
+model_processing/census.sqlite
